@@ -1,29 +1,28 @@
 <div class="container" data-theme="dark">
   <div class="card-body" data-theme="dark">
-    <h1 class="text-5xl font-semibold ">Team Generator</h1>
+    <h1 class="text-5xl font-semibold text-center">Team Generator</h1>
     <ul class="list-disc list-inside">
       <li *ngFor="let member of members">{{member}}</li>
     </ul>
-    <div class="p10 m-10 ">
+    <div class="p10 m-10 flex justify-center ">
       <input #addMemberInput type="text" placeholder="Name" class="input input-bordered w-full max-w-xs mr-5"
         (input)="onInput(addMemberInput.value)" [value]="newMemberName" />
       <button class="btn btn-primary w-24" (click)="addMember()">Add</button>
     </div>
-    <div class="p10 m-10">
-      <input #NumberOfTeamsInput type="number" placeholder="# of Teams" class="input input-bordered w-full max-w-xs mr-5"
-        (input)="onNumberOfTeamsInput(NumberOfTeamsInput.value)" [value]="numberOfTeams" />
+    <div class="p10 m-10 flex justify-center ">
+      <input #NumberOfTeamsInput type="number" placeholder="# of Teams"
+        class="input input-bordered w-full max-w-xs mr-5" (input)="onNumberOfTeamsInput(NumberOfTeamsInput.value)"
+        [value]="numberOfTeams" />
       <button (click)="generateTeams()" class="btn btn-primary w-24">Generate</button>
     </div>
     <p *ngIf="errorMessage" class="error-msg text-red-700">{{errorMessage}}</p>
   </div>
 
   <div *ngIf="teams.length" class="teams-container">
-    <div class="teams-container p10 m-10">
-      <h3 class="text-4xl mb-5">Team 1</h3>
-      <ul>
-        <li>1</li>
-        <li>2</li>
-      </ul>
-    </div>
+<app-team 
+*ngFor="let team of teams; let i = index"
+[team]="team"
+[index]="i"
+></app-team>
   </div>
 </div>
